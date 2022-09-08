@@ -24,12 +24,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
   },
   logo: {
-    marginLeft:"5%",
+    marginLeft: "5%",
     marginRight: "auto",
     fontWeight: "bold",
   },
   headline: {
-    marginLeft:"5%",
+    marginLeft: "5%",
     marginRight: "auto",
     fontWeight: "bold",
   },
@@ -41,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     color: "#1e1e1e",
   },
+  dividerColor:{
+    backgroundColor:"#d71921"
+  }
 }));
 
 const navigationLinks = [
@@ -55,16 +58,17 @@ export default function NavBar() {
   const [open, setopen] = useState(false);
   return (
     <AppBar className={classes.appBar} position="static">
-    <Toolbar>
-    <Typography variant="h6" color="primary" className={classes.logo}>
+      <Toolbar>
+        <Typography variant="h6" color="primary" className={classes.logo}>
           News
         </Typography>
-    </Toolbar>
+      </Toolbar>
+      <Divider   style={{ background: '#d71921',height:"2px",marginLeft:"5%" }}/>
       <Toolbar>
-      <Typography variant="h6" color="primary" className={classes.headline}>
+        <Typography variant="h6" color="primary" className={classes.headline}>
           HeadLines ...
         </Typography>
-        <Divider />
+        
         {/* <Button color="primary">Login</Button> */}
         <Hidden xsDown>
           <Typography
@@ -93,7 +97,6 @@ export default function NavBar() {
           >
             <MenuIcon onClick={() => setopen(true)} />
           </IconButton>
-          
         </Hidden>
       </Toolbar>
       <SwipeableDrawer
