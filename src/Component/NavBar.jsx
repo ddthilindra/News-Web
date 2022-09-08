@@ -41,9 +41,9 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     color: "#1e1e1e",
   },
-  dividerColor:{
-    backgroundColor:"#d71921"
-  }
+  dividerColor: {
+    backgroundColor: "#d71921",
+  },
 }));
 
 const navigationLinks = [
@@ -63,12 +63,14 @@ export default function NavBar() {
           News
         </Typography>
       </Toolbar>
-      <Divider   style={{ background: '#d71921',height:"2px",marginLeft:"5%" }}/>
+      <Divider
+        style={{ background: "#d71921", height: "2px", marginLeft: "5%" }}
+      />
       <Toolbar>
         <Typography variant="h6" color="primary" className={classes.headline}>
           HeadLines ...
         </Typography>
-        
+
         {/* <Button color="primary">Login</Button> */}
         <Hidden xsDown>
           <Typography
