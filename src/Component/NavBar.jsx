@@ -41,8 +41,10 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     color: "#1e1e1e",
   },
-  dividerColor: {
-    backgroundColor: "#d71921",
+  divider: {
+    background: "#d71921",
+    height: "2px",
+    marginLeft: "5%",
   },
 }));
 
@@ -59,15 +61,13 @@ export default function NavBar() {
   return (
     <AppBar className={classes.appBar} position="static">
       <Toolbar>
-        <Typography variant="h6" color="primary" className={classes.logo}>
-          News
+        <Typography variant="h4" color="primary" className={classes.logo}>
+          ADA News
         </Typography>
       </Toolbar>
-      <Divider
-        style={{ background: "#d71921", height: "2px", marginLeft: "5%" }}
-      />
+      <Divider className={classes.divider} />
       <Toolbar>
-        <Typography variant="h6" color="primary" className={classes.headline}>
+        <Typography variant="h9" color="primary" className={classes.headline}>
           HeadLines ...
         </Typography>
 
@@ -112,20 +112,21 @@ export default function NavBar() {
             <ChevronRight onClick={() => setopen(false)} />
           </IconButton>
         </div>
-        <Divider />
-        <List></List>
-        {navigationLinks.map((item) => (
-          <ListItem>
-            <Link
-              color="primary"
-              href={item.href}
-              underline="none"
-              className={classes.link}
-            >
-              {item.name}
-            </Link>
-          </ListItem>
-        ))}
+        <Divider className={classes.divider}/>
+        <List>
+          {navigationLinks.map((item) => (
+            <ListItem>
+              <Link
+                color="primary"
+                href={item.href}
+                underline="none"
+                className={classes.link}
+              >
+                {item.name}
+              </Link>
+            </ListItem>
+          ))}
+        </List>
       </SwipeableDrawer>
     </AppBar>
   );
