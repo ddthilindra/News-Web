@@ -14,9 +14,9 @@ import {
   SwipeableDrawer,
 } from "@material-ui/core";
 import { ChevronRight } from "@material-ui/icons";
-import InputBase from '@material-ui/core/InputBase';
-import SearchIcon from '@material-ui/icons/Search';
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import InputBase from "@material-ui/core/InputBase";
+import SearchIcon from "@material-ui/icons/Search";
+import { alpha, makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -49,50 +49,51 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "5%",
   },
   search: {
-    position: 'relative',
+    position: "relative",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: "#d71921",
-    '&:hover': {
+    "&:hover": {
       backgroundColor: "#d71921",
     },
     marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(1),
-      width: 'auto',
+      width: "auto",
     },
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   inputRoot: {
-    color: 'inherit',
+    color: "inherit",
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      width: "12ch",
+      "&:focus": {
+        width: "20ch",
       },
-    },}
+    },
+  },
 }));
 
 const navigationLinks = [
-  { name: "Top News", href: "" },
-  { name: "Top News", href: "" },
-  { name: "Top News", href: "" },
-  { name: "Top News", href: "" },
+  { name: "Home", href: "/" },
+  { name: "Sport News", href: "/sport" },
+  { name: "Tech News", href: "/tech" },
+  { name: "Gallery", href: "/gallery" },
 ];
 
 export default function NavBar() {
@@ -102,21 +103,21 @@ export default function NavBar() {
     <AppBar className={classes.appBar} position="static">
       <Toolbar>
         <Typography variant="h4" color="primary" className={classes.logo}>
-          ADA News
+          අද News
         </Typography>
         <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
+          <div className={classes.searchIcon}>
+            <SearchIcon />
           </div>
+          <InputBase
+            placeholder="Search…"
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
+            }}
+            inputProps={{ "aria-label": "search" }}
+          />
+        </div>
       </Toolbar>
       <Divider className={classes.divider} />
       <Toolbar>
@@ -165,7 +166,7 @@ export default function NavBar() {
             <ChevronRight onClick={() => setopen(false)} />
           </IconButton>
         </div>
-        <Divider className={classes.divider}/>
+        <Divider className={classes.divider} />
         <List>
           {navigationLinks.map((item) => (
             <ListItem>
