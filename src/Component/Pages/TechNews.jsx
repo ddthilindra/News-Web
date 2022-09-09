@@ -68,6 +68,7 @@ export default function TechNews() {
       <Box className={classes.hero}>
         <Box>Tech News</Box>
       </Box>
+      <div style={{"margin":"5% 5% 5% 5%"}}>
       <Container>
         <Box style={{ "background-color": "#d71921" }}>
           <Typography variant="h4" color="secondary">
@@ -81,6 +82,7 @@ export default function TechNews() {
           ))}
         </Grid>
       </Container>
+      </div>
     </>
   )
 }

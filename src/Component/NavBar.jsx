@@ -103,7 +103,17 @@ export default function NavBar() {
     <AppBar className={classes.appBar} position="static">
       <Toolbar>
         <Typography variant="h4" color="primary" className={classes.logo}>
-          අද News
+          <div
+            style={{
+              "border-radius": "5px",
+              border: "5px solid #d71921",
+              padding: "8px",
+              marginTop: "5%",
+            }}
+          >
+            අද
+          </div>
+          News
         </Typography>
         <div className={classes.search}>
           <div className={classes.searchIcon}>

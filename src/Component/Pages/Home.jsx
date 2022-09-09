@@ -18,7 +18,7 @@ import {
 const useStyles = makeStyles((theme) => ({
   hero: {
     backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../../assets/News-banner.jpg')`,
-    height: "500px",
+    height: "350px",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "2%",
   },
   CardMedia: {
-    width: 180,
     height: 100,
   },
   ReadBtn: {
@@ -46,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   card: {
-    marginTop: "2%",
+    marginTop: "5%",
   },
 }));
 

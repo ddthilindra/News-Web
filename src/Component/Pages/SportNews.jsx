@@ -79,6 +79,7 @@ export default function SportNews() {
       <Box className={classes.hero}>
         <Box>Sport News</Box>
       </Box>
+      <div style={{"margin":"5% 5% 5% 5%"}}>
       <Container>
         <Box style={{ "background-color": "#d71921" }}>
           <Typography variant="h4" color="secondary">
@@ -92,6 +93,7 @@ export default function SportNews() {
           ))}
         </Grid>
       </Container>
+      </div>
     </>
   );
 }
