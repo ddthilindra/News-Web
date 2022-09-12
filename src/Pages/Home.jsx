@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
-import image from "../../assets/News-banner.jpg";
+import image from "../assets/News-banner.jpg";
 import {
   Button,
   Card,
@@ -17,7 +17,7 @@ import {
 //https://www.borouge.com/MediaCentre/Images1/News-Website-banner-V1.JPG
 const useStyles = makeStyles((theme) => ({
   hero: {
-    backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../../assets/News-banner.jpg')`,
+    backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://www.borouge.com/MediaCentre/Images1/News-Website-banner-V1.JPG')`,
     height: "350px",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: "#ffff",
     },
-
     "&:hover": {
       color: "#d71921",
     },

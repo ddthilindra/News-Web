@@ -11,17 +11,24 @@ import {
   Link,
   List,
   ListItem,
+  ListItemIcon,
+  ListItemText,
   SwipeableDrawer,
 } from "@material-ui/core";
 import { ChevronRight } from "@material-ui/icons";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 import { alpha, makeStyles } from "@material-ui/core/styles";
+import { useHistory, useLocation } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
     background: "#ffff",
   },
+  menu: {
+    display: "flex",
+  },
+
   menuItem: {
     justifyContent: "flex-end",
   },
@@ -87,17 +94,23 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  active: {
+    background: "#f4f4f4",
+  },
 }));
 
 const navigationLinks = [
-  { name: "Home", href: "/" },
-  { name: "Sport News", href: "/sport" },
-  { name: "Tech News", href: "/tech" },
-  { name: "Gallery", href: "/gallery" },
+  { name: "Home", path: "/" },
+  { name: "Sport News", path: "/sport" },
+  { name: "Tech News", path: "/tech" },
+  { name: "Gallery", path: "/gallery" },
 ];
 
 export default function NavBar() {
   const classes = useStyles();
+  const history = useHistory();
+  const location = useLocation();
+
   const [open, setopen] = useState(false);
   return (
     <AppBar className={classes.appBar} position="static">
@@ -137,12 +150,24 @@ export default function NavBar() {
 
         {/* <Button color="primary">Login</Button> */}
         <Hidden xsDown>
-          <Typography
-            variant="button"
-            color="primary"
-            className={classes.menuItem}
-          >
-            {navigationLinks.map((item) => (
+          <Typography color="primary">
+            <List className={classes.menu}>
+              {navigationLinks.map((item) => (
+                <ListItem
+                  key={item.name}
+                  color="primary"
+                  button
+                  onClick={() => history.push(item.path)}
+                  className={
+                    location.pathname == item.path ? classes.active : null
+                  }
+                >
+                  {/* <ListItemIcon>{item.icon}</ListItemIcon> */}
+                  <ListItemText>{item.name}</ListItemText>
+                </ListItem>
+              ))}
+            </List>
+            {/* {navigationLinks.map((item) => (
               <Link
                 color="primary"
                 href={item.href}
@@ -151,7 +176,7 @@ export default function NavBar() {
               >
                 {item.name}
               </Link>
-            ))}
+            ))} */}
           </Typography>
         </Hidden>
         <Hidden smUp>

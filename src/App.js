@@ -2,10 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Footer from "./Component/Footer";
 import NavBar from "./Component/NavBar";
-import Gallery from "./Component/Pages/Gallery";
-import Home from "./Component/Pages/Home"
-import SportNews from "./Component/Pages/SportNews";
-import TechNews from "./Component/Pages/TechNews";
+import Gallery from "./Pages/Gallery";
+import Home from "./Pages/Home"
+import SportNews from "./Pages/SportNews";
+import TechNews from "./Pages/TechNews";
 
 
 function App() {
