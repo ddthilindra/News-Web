@@ -11,22 +11,11 @@ import React, { useEffect, useState } from "react";
 import NewsViewPopup from "./NewsViewPopup";
 
 const useStyles = makeStyles((theme) => ({
-  hero: {
-    backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://www.borouge.com/MediaCentre/Images1/News-Website-banner-V1.JPG')`,
-    height: "350px",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    position: "relative",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    color: "#ffff",
-    fontSize: "4rem",
-    marginBottom: "2%",
-  },
   CardMedia: {
-    height: 100,
+    height: 200,
+  },
+  CardMedia2: {
+    height: 300,
   },
   ReadBtn: {
     // marginLeft:"90%"
@@ -46,15 +35,15 @@ export default function NewsCard(props) {
   const classes = useStyles();
   const [newsRecordForView, setnewsRecordForView] = useState(null);
   const [openNewsPopup, setOpenNewsPopup] = useState(false);
-  
+
   const [value, setvalue] = useState([]);
-    useEffect(() => {
-      // setvalue(props)
-      // console.log(value)
-    }, []);
+  useEffect(() => {
+    // setvalue(props)
+    // console.log(value)
+  }, []);
 
   const openInNewsPopup = async (id) => {
-    console.log(id)
+    console.log(id);
     setnewsRecordForView(id);
     setOpenNewsPopup(true);
   };
@@ -66,6 +55,7 @@ export default function NewsCard(props) {
             className={classes.CardMedia}
             image={props.image}
           ></CardMedia>
+
           <Typography
             variant="h5"
             style={{ fontWeight: "bold", marginTop: "1%" }}
@@ -73,8 +63,9 @@ export default function NewsCard(props) {
             {props.title}
           </Typography>
           <Typography variant="subtitile1" paragraph>
-            {props.description}
+            {props.description.substring(0, 90)}...
           </Typography>
+
           <Button
             className={classes.ReadBtn}
             color="secondary"
@@ -82,13 +73,13 @@ export default function NewsCard(props) {
           >
             Read more
           </Button>
+
           <NewsViewPopup
-          openNewsPopup={openNewsPopup}
-          setOpenNewsPopup={setOpenNewsPopup}
-          newsRecordForView={newsRecordForView}
-        ></NewsViewPopup>
+            openNewsPopup={openNewsPopup}
+            setOpenNewsPopup={setOpenNewsPopup}
+            newsRecordForView={newsRecordForView}
+          ></NewsViewPopup>
         </CardContent>
-        
       </Card>
     </Grid>
   );

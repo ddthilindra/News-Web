@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -7,12 +7,17 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import {
   Divider,
+  FormControl,
   Hidden,
+  InputLabel,
   Link,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
+  Menu,
+  MenuItem,
+  Select,
   SwipeableDrawer,
 } from "@material-ui/core";
 import { ChevronRight } from "@material-ui/icons";
@@ -20,6 +25,8 @@ import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 import { alpha, makeStyles } from "@material-ui/core/styles";
 import { useHistory, useLocation } from "react-router-dom";
+import axios from "axios";
+import "../App.css";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -112,8 +119,53 @@ export default function NavBar() {
   const location = useLocation();
 
   const [open, setopen] = useState(false);
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const openMenu = Boolean(anchorEl);
+  const handleClick = (e) => {
+    setAnchorEl(e.currentTarget);
+    console.log(e.currentTarget);
+  };
+  const handleClose = (e) => {
+    setAnchorEl(null);
+  };
+  const [categories, setcategories] = useState([]);
+
+  const [news, setnews] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/category/getAllCategory")
+      .then((res) => {
+        if (res.data.code == 200 && res.data.success == true) {
+          setcategories(res.data.data);
+        } else {
+          window.alert(res.data.message);
+        }
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get("http://localhost:8000/news/getAllNews")
+      .then((res) => {
+        if (res.data.code == 200 && res.data.success == true) {
+          setnews(res.data.data);
+        } else {
+          window.alert(res.data.message);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <AppBar className={classes.appBar} position="static">
+      <div className="news-container">
+        <div class="title">HEADLINES</div>
+        <ul>
+          {news.map((data) => (
+            <li style={{ color: "black" }}>{data.title}</li>
+          ))}
+        </ul>
+      </div>
       <Toolbar>
         <Typography variant="h4" color="primary" className={classes.logo}>
           <div
@@ -128,6 +180,7 @@ export default function NavBar() {
           </div>
           News
         </Typography>
+        {/* <Button color="primary">Login</Button> */}
         <div className={classes.search}>
           <div className={classes.searchIcon}>
             <SearchIcon />
@@ -143,12 +196,14 @@ export default function NavBar() {
         </div>
       </Toolbar>
       <Divider className={classes.divider} />
-      <Toolbar>
-        <Typography variant="h9" color="primary" className={classes.headline}>
-          HeadLines ...
-        </Typography>
 
-        {/* <Button color="primary">Login</Button> */}
+      <Toolbar>
+        <Typography
+          variant="h9"
+          color="primary"
+          className={classes.headline}
+        ></Typography>
+
         <Hidden xsDown>
           <Typography color="primary">
             <List className={classes.menu}>
@@ -166,17 +221,46 @@ export default function NavBar() {
                   <ListItemText>{item.name}</ListItemText>
                 </ListItem>
               ))}
+
+              <ListItem>
+                <Typography
+                  sx={{
+                    marginRight: "20px",
+                    cursor: "pointer",
+                    color: "primary",
+                    marginTop: "80px",
+                  }}
+                  aria-control="basic-menu"
+                  aria-haspopup="true"
+                  aria-expanded={openMenu ? "true" : undefined}
+                  onClick={handleClick}
+                >
+                  Category
+                </Typography>
+
+                <Menu
+                  style={{ marginTop: "3%" }}
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={openMenu}
+                  onClose={handleClose}
+                >
+                  {categories.map((data) => (
+                    <MenuItem
+                      onClick={() => {
+                        history.push(`/category/` + data.category);
+                        window.location.reload();
+                      }}
+                      key={data.id}
+                      value={data.category}
+                      setSelectedValue={data.category}
+                    >
+                      {data.category}
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </ListItem>
             </List>
-            {/* {navigationLinks.map((item) => (
-              <Link
-                color="primary"
-                href={item.href}
-                underline="none"
-                className={classes.link}
-              >
-                {item.name}
-              </Link>
-            ))} */}
           </Typography>
         </Hidden>
         <Hidden smUp>

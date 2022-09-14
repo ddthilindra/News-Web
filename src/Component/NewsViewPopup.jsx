@@ -25,7 +25,6 @@ export default function NewsViewPopup(props) {
     const initChat = async () => {
       var id = await newsRecordForView;
 
-      console.log(id);
       if (id) {
         await axios
           .get(`http://localhost:8000/news/getNewsById/` + id)

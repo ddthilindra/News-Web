@@ -12,11 +12,14 @@ import {
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import NewsCard from "../Component/NewsCard";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 
 
 const useStyles = makeStyles((theme) => ({
   hero: {
-    backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../../assets/News-banner.jpg')`,
+    backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://sport.ec.europa.eu/sites/default/files/styles/eac_ratio_16_9_xl/public/sport-active-part-erasmus-plus-crop.jpg?h=5dabf909&itok=JM-JNmjy')`,
     height: "100px",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
@@ -51,6 +54,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SportNews() {
   const classes = useStyles();
+  const [news, setnews] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/news/getNewsByCategory/Sport`)
+
+      .then((res) => {
+        console.log("Getting from:", res.data.data[0]);
+        setnews(res.data.data);
+        
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <>
       <Box className={classes.hero}>
@@ -59,13 +75,11 @@ export default function SportNews() {
       <div style={{"margin":"5% 5% 5% 5%"}}>
       <Container>
         <Box style={{ "background-color": "#d71921" }}>
-          <Typography variant="h4" color="secondary">
-            Top Series
-          </Typography>
+          
         </Box>
         <Divider />
         <Grid>
-          {newsData.map((data) => (
+          {news.map((data) => (
             <NewsCard {...data} />
             
           ))}
@@ -76,15 +90,4 @@ export default function SportNews() {
   );
 }
 
-const newsData = [
-  {
-    title: "News1",
-    desc: "asdasdasdas asdasdasd asdasd asd a sd as dasd    asd as d  asd as dasdasdasd  asdasdas",
-    imageUrl:
-      "https://www.borouge.com/MediaCentre/Images1/News-Website-banner-V1.JPG",
-  },
-  {
-    title: "News1",
-    desc: "asdasdasdas asdasdasd asdasd asd a sd as dasd    asd as d  asd as dasdasdasd  asdasdas",
-  },
-];
+

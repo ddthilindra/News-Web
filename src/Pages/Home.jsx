@@ -70,11 +70,11 @@ export default function Home() {
   return (
     <div>
       <Box className={classes.hero}>
-        <Box>Breaking News</Box>
+        <Box>Today News</Box>
       </Box>
-      <div style={{ margin: "5% 5% 5% 5%" }}>
+      <div style={{ margin: "5% 15% 5% 15%" }}>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid xs={4}>
+          <Grid xs={12}>
             <Container>
               <Box style={{ "background-color": "#d71921" }}>
                 <Typography variant="h4" color="secondary">
@@ -89,51 +89,10 @@ export default function Home() {
               </Grid>
             </Container>
           </Grid>
-          <Grid xs={4}>
-            <Container>
-              <Box style={{ "background-color": "#d71921" }}>
-                <Typography variant="h4" color="secondary">
-                  Top Series
-                </Typography>
-              </Box>
-              <Divider />
-              <Grid>
-                {news.map((data) => (
-                  <NewsCard {...data} />
-                ))}
-              </Grid>
-            </Container>
-          </Grid>
-          <Grid xs={4}>
-            <Container>
-              <Box style={{ "background-color": "#d71921" }}>
-                <Typography variant="h4" color="secondary">
-                  Top Series
-                </Typography>
-              </Box>
-              <Divider />
-              <Grid>
-                {news.map((data) => (
-                  <NewsCard {...data} />
-                ))}
-              </Grid>
-            </Container>
-          </Grid>
+          
         </Grid>
       </div>
     </div>
   );
 }
 
-const newsData = [
-  {
-    title: "News1",
-    desc: "asdasdasdas asdasdasd asdasd asd a sd as dasd    asd as d  asd as dasdasdasd  asdasdas",
-    imageUrl:
-      "https://www.borouge.com/MediaCentre/Images1/News-Website-banner-V1.JPG",
-  },
-  {
-    title: "News1",
-    desc: "asdasdasdas asdasdasd asdasd asd a sd as dasd    asd as d  asd as dasdasdasd  asdasdas",
-  },
-];

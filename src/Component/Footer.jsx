@@ -87,8 +87,8 @@ export default function Footer() {
               </Typography>
             </Grid>
           </Grid>
-          <Box textAlign="center" pt={{ xs: 5, sm: 10 }} pb={{ xs: 5, sm: 0 }}>
-            Material UI Workshop &reg; {new Date().getFullYear()}
+          <Box Align="center" pt={{ xs: 5, sm: 10 }} pb={{ xs: 5, sm: 0 }}>
+           <div> Deshitha Thilindra &reg; {new Date().getFullYear()}</div>
           </Box>
         </Container>
       </Box>
