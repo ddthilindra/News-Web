@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import image from "../assets/News-banner.jpg";
@@ -13,6 +13,8 @@ import {
   GridList,
   Typography,
 } from "@material-ui/core";
+import axios from "axios";
+import NewsCard from "../Component/NewsCard";
 
 //https://www.borouge.com/MediaCentre/Images1/News-Website-banner-V1.JPG
 const useStyles = makeStyles((theme) => ({
@@ -48,82 +50,77 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function News({ title, desc, imageAlt, imageUrl, tag, links }) {
-  const classes = useStyles();
-  return (
-    <Grid item className={classes.card}>
-      <Card>
-        <CardContent>
-          <CardMedia className={classes.CardMedia} image={imageUrl}></CardMedia>
-          <Typography
-            variant="h5"
-            style={{ fontWeight: "bold", marginTop: "1%" }}
-          >
-            {title}
-          </Typography>
-          <Typography variant="subtitile1" paragraph>
-            {desc}
-          </Typography>
-          <Button className={classes.ReadBtn} color="secondary">
-            Read more
-          </Button>
-        </CardContent>
-      </Card>
-    </Grid>
-  );
-}
+
 
 export default function Home() {
   const classes = useStyles();
+  const [news, setnews] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/news/getAllNews")
+      .then((res) => {
+        if (res.data.code == 200 && res.data.success == true) {
+          setnews(res.data.data);
+        } else {
+          window.alert(res.data.message);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div>
       <Box className={classes.hero}>
         <Box>Breaking News</Box>
       </Box>
-      <div style={{"margin":"5% 5% 5% 5%"}}>
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid xs={4}>
-          <Container>
-            <Box style={{"background-color":"#d71921"}} >
-              <Typography variant="h4" color="secondary" >Top Series</Typography>
-            </Box>
+      <div style={{ margin: "5% 5% 5% 5%" }}>
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          <Grid xs={4}>
+            <Container>
+              <Box style={{ "background-color": "#d71921" }}>
+                <Typography variant="h4" color="secondary">
+                  Top Series
+                </Typography>
+              </Box>
               <Divider />
-            <Grid>
-              {newsData.map((data) => (
-                <News {...data} />
-              ))}
-            </Grid>
-          </Container>
-        </Grid>
-        <Grid xs={4}>
-          <Container>
-          <Box style={{"background-color":"#d71921"}} >
-              <Typography variant="h4" color="secondary" >Top Series</Typography>
-            </Box>
+              <Grid>
+                {news.map((data) => (
+                  <NewsCard {...data} />
+                ))}
+              </Grid>
+            </Container>
+          </Grid>
+          <Grid xs={4}>
+            <Container>
+              <Box style={{ "background-color": "#d71921" }}>
+                <Typography variant="h4" color="secondary">
+                  Top Series
+                </Typography>
+              </Box>
               <Divider />
-            <Grid>
-              {newsData.map((data) => (
-                <News {...data} />
-              ))}
-            </Grid>
-          </Container>
-        </Grid>
-        <Grid xs={4}>
-          <Container>
-          <Box style={{"background-color":"#d71921"}} >
-              <Typography variant="h4" color="secondary" >Top Series</Typography>
-            </Box>
+              <Grid>
+                {news.map((data) => (
+                  <NewsCard {...data} />
+                ))}
+              </Grid>
+            </Container>
+          </Grid>
+          <Grid xs={4}>
+            <Container>
+              <Box style={{ "background-color": "#d71921" }}>
+                <Typography variant="h4" color="secondary">
+                  Top Series
+                </Typography>
+              </Box>
               <Divider />
-            <Grid>
-              {newsData.map((data) => (
-                <News {...data} />
-              ))}
-            </Grid>
-          </Container>
+              <Grid>
+                {news.map((data) => (
+                  <NewsCard {...data} />
+                ))}
+              </Grid>
+            </Container>
+          </Grid>
         </Grid>
-      </Grid>
       </div>
-      
     </div>
   );
 }

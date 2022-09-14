@@ -11,31 +11,8 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import NewsCard from "../Component/NewsCard";
 
-function News({ title, desc, imageAlt, imageUrl, tag, links }) {
-  const classes = useStyles();
-  return (
-    <Grid item className={classes.card}>
-      <Card>
-        <CardContent>
-          <CardMedia className={classes.CardMedia} image={imageUrl}></CardMedia>
-          <Typography
-            variant="h5"
-            style={{ fontWeight: "bold", marginTop: "1%" }}
-          >
-            {title}
-          </Typography>
-          <Typography variant="subtitile1" paragraph>
-            {desc}
-          </Typography>
-          <Button className={classes.ReadBtn} color="secondary">
-            Read more
-          </Button>
-        </CardContent>
-      </Card>
-    </Grid>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   hero: {
@@ -89,7 +66,8 @@ export default function SportNews() {
         <Divider />
         <Grid>
           {newsData.map((data) => (
-            <News {...data} />
+            <NewsCard {...data} />
+            
           ))}
         </Grid>
       </Container>
